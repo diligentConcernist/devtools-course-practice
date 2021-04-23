@@ -26,7 +26,7 @@ Stack<T>::Stack<T>(const Stack<T>& tmp) {
 
 template <typename T>
 Stack<T>::~Stack<T>() {
-  delete data;
+  delete [] data;
 }
 
 template <typename T>
