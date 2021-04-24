@@ -3,33 +3,26 @@
 #ifndef MODULES_STACK_INCLUDE_STACK_H_
 #define MODULES_STACK_INCLUDE_STACK_H_
 
-#include <string>
-
-template <class T> class Stack {
+class Stack {
  private:
-  int size;
-  T* data;
-  int top;
+    double *data;
+    int size_;
+    int top_;
 
  public:
-  Stack<T>(int _size = 0);
+    explicit Stack(int size = 10);
+    Stack(const Stack& stack);
+    ~Stack();
+    int size() const;
+    double peek() const;
+    double top();
+    bool isEmpty() const;
+    bool isFull() const;
+    void push(const double value);
 
-  Stack<T>(const Stack<T> &tmp);
-
-  Stack<T> &operator=(const Stack<T> &tmp);
-
-  ~Stack<T>();
-
-  int size();
-
-  void push(T element);
-  T pop();
-  T peek(int index);
-  T top();
-
-  bool isEmpty();
-
-  std::string print();
+    void operator = (const Stack& stack);
+    bool operator == (const Stack& stack) const;
+    bool operator != (const Stack& stack) const;
 };
 
 #endif  // MODULES_STACK_INCLUDE_STACK_H_

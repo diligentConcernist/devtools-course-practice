@@ -1,83 +1,87 @@
 // Copyright 2021 Gruzdeva Diana
 
-#include "../../modules/stack/include/stack.h"
+#include "include/stack.h"
 
-template <typename T>
-Stack<T>::Stack<T>(int _size = 0) {
-  size = _size;
-  top = size;
+Stack::Stack(int size) {
+    if (size <= 0) {
+        throw "The size must be greater than zero";
+    } else {
+        this->size_ = size;
+    }
+    data = new double[this->size_];
+    for (int i = 0; i < size; i++) {
+      data[i] = 0.0;
+    }
+    top_ = -1;
+}
 
-  data = new T[size];
-  for (int i = 0; i < size; i++) {
-    data[i] = T(0);
+Stack::Stack(const Stack& stack) {
+    size_ = stack.size_;
+    data = new double[size_];
+    top_ = stack.top_;
+    for (int i = 0; i < top_ + 1; i++)
+        data[i] = stack.data[i];
+}
+
+Stack::~Stack() {
+    delete [] data;
+}
+
+int Stack::size() const {
+    return size_;
+}
+
+double Stack::peek() const {
+    return data[top_];
+}
+
+bool Stack::isEmpty() const {
+    return (top_ == -1);
+}
+
+bool Stack::isFull() const {
+    return (top_ + 1 == size_);
+}
+
+void Stack::push(const double value) {
+  if (this->isFull()) {
+    throw "Stack is full";
   }
+  data[++top_] = value;
 }
 
-template <typename T>
-Stack<T>::Stack<T>(const Stack<T>& tmp) {
-  size = tmp.size;
-  top = tmp.top;
-
-  data = new[size];
-  for (int i = 0; i < size; i++) {
-      data[i] = tmp.data[i];
+double Stack::top() {
+  if (this->isEmpty()) {
+    throw "Stack is empty";
   }
+  return data[top_--];
 }
 
-template <typename T>
-Stack<T>::~Stack<T>() {
-  delete [] data;
+void Stack::operator = (const Stack& stack) {
+    size_ = stack.size_;
+    data = new double[size_];
+    top_ = stack.top_;
+    for (int i = 0; i < top_ + 1; i++) {
+        data[i] = stack.data[i];
+    }
 }
 
-template <typename T>
-int Stack<T>::size() {
-  return size;
+bool Stack::operator == (const Stack& stack) const {
+    bool check = false;
+    if (size_ == stack.size_) {
+        if (top_ == stack.top_) {
+            check = true;
+            for (int i = 0; i < size_; i++) {
+                if (data[i] != stack.data[i]) {
+                    check = false;
+                    break;
+                }
+            }
+        }
+    }
+    return check;
 }
 
-template <typename T>
-void Stack<T>::push(T element) {
-  T tmp*;
-  tmp = new T[size];
-  for (int i = 0; i < size; i++) {
-    tmp[i] = data[i];
-  }
-  delete data;
-  size++;
-  data = new T[size];
-  for (int i = 0; i < size - 1; i++) {
-    tmp[i] = data[i];
-  }
-  data[size] = element;
-}
-
-template<typename T>
-T Stack<T>::peek(int index) {
-  return data[size - 1 - index];
-}
-
-template <typename T>
-T Stack<T>::top() {
-  return data[--top];
-}
-
-template <typename T>
-bool Stack<T>::isEmpty() {
-  if (size == 0) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-
-template <typename T>
-std::string Stack<T>::print() {
-  std::string result = "";
-  int realIndex = top;
-  for (int i = top; i < 0; i--) {
-    result = result + (top - realIndex) + ": " + data[i] + "\n";
-    realIndex--;
-  }
-
-  return result;
+bool Stack::operator != (const Stack& stack) const {
+    return !(*this == stack);
 }
