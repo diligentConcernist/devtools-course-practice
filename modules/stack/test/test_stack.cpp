@@ -107,7 +107,7 @@ TEST(Gruzdeva_Diana_Stack, Wrong_Size) {
 
   size = -1;
 
-  ASSERT_ANY_THROW(Stack stack(-1));
+  ASSERT_ANY_THROW(Stack stack(size));
 }
 
 TEST(Gruzdeva_Diana_Stack, Too_Much_Data) {
