@@ -5,130 +5,55 @@
 #include "include/stack.h"
 
 TEST(Gruzdeva_Diana_Stack, Constructor) {
-  int size = 3;
-
-  Stack stack(size);
-
-  ASSERT_EQ(true, stack.isEmpty());
-  ASSERT_EQ(3, stack.size());
+  ASSERT_NO_THROW(Stack A);
 }
 
-TEST(Gruzdeva_Diana_Stack, Copy) {
-  Stack stack(5);
-  for (int i = 0; i < 5; i++) {
-    stack.push(static_cast<double>(i * 10));
-  }
+TEST(Gruzdeva_Diana_Stack, Push) {
+  Stack stack;
 
-  Stack copiedStack(stack);
+  double element = 5.0;
 
-
-  ASSERT_EQ(stack, copiedStack);
+  ASSERT_NO_THROW(stack.push(element));
 }
 
-TEST(Gruzdeva_Diana_Stack, Assignment) {
-  Stack stack(5);
-  for (int i = 0; i < 5; i++) {
-    stack.push(static_cast<double>(i * 10));
-  }
-  Stack newStack(1);
+TEST(Gruzdeva_Diana_Stack, Peek) {
+  Stack stack;
+  double element = 5.0;
 
-  newStack = stack;
+  stack.push(element);
 
-  ASSERT_EQ(stack, newStack);
+  ASSERT_EQ(element, stack.peek());
 }
 
-TEST(Gruzdeva_Diana_Stack, Equality) {
-  Stack stack(5);
-  Stack anotherStack(5);
+TEST(Gruzdeva_Diana_Stack, PeekThrow) {
+  Stack stack;
 
-  for (int i = 0; i < 5; i++) {
-    stack.push(static_cast<double>(i * 10));
-    anotherStack.push(static_cast<double>(i * 10));
-  }
-
-  ASSERT_EQ(true, stack == anotherStack);
+  ASSERT_ANY_THROW(stack.pop());
 }
 
-TEST(Gruzdeva_Diana_Stack, Unequality) {
-  Stack stack(5);
-  Stack anotherStack(5);
+TEST(Gruzdeva_Diana_Stack, PopNoThrow) {
+  Stack stack;
+  double element = 5.0;
 
-  for (int i = 0; i < 5; i++) {
-    stack.push(static_cast<double>(i * 10));
-    anotherStack.push(static_cast<double>(i * 10));
-  }
-  anotherStack.top();
-  anotherStack.push(-10.0);
+  stack.push(element);
 
-  ASSERT_EQ(true, stack != anotherStack);
+  ASSERT_NO_THROW(stack.pop());
 }
 
-TEST(Gruzdeva_Diana_Stack, Push_And_Peek) {
-  Stack stack(5);
-  double pushable = 10.0;
+TEST(Gruzdeva_Diana_Stack, PopThrow) {
+  Stack stack;
 
-  stack.push(pushable);
-
-  ASSERT_EQ(pushable, stack.peek());
+  ASSERT_ANY_THROW(stack.pop());
 }
 
-TEST(Gruzdeva_Diana_Stack, Size) {
-  Stack stack(5);
-  int check = -1;
+TEST(Gruzdeva_Diana_Stack, Pop) {
+  Stack stack;
+  double firstElement = 5.0;
+  double secondElement = 10.0;
 
-  check = stack.size();
+  stack.push(secondElement);
+  stack.push(firstElement);
+  stack.pop();
 
-  ASSERT_EQ(5, check);
-}
-
-TEST(Gruzdeva_Diana_Stack, Empty) {
-  Stack stack(5);
-  bool check = false;
-
-  check = stack.isEmpty();
-
-  ASSERT_EQ(true, check);
-}
-
-TEST(Gruzdeva_Diana_Stack, Full) {
-  Stack stack(5);
-  bool check = false;
-
-  for (int i = 0; i < 5; i++) {
-    stack.push(static_cast<double>(i * 10));
-  }
-  check = stack.isFull();
-
-  ASSERT_EQ(true, check);
-}
-
-TEST(Gruzdeva_Diana_Stack, Wrong_Size) {
-  int size;
-
-  size = -1;
-
-  ASSERT_ANY_THROW(Stack stack(size));
-}
-
-TEST(Gruzdeva_Diana_Stack, Too_Much_Data) {
-  Stack stack(5);
-
-  for (int i = 0; i < 5; i++) {
-    stack.push(static_cast<double>(i * 10));
-  }
-
-  ASSERT_ANY_THROW(stack.push(10.0));
-}
-
-TEST(Gruzdeva_Diana_Stack, Top_Is_Missing) {
-  Stack stack(5);
-
-  for (int i = 0; i < 5; i++) {
-    stack.push(static_cast<double>(i * 10));
-  }
-  for (int i = 0; i < 5; i++) {
-    stack.top();
-  }
-
-  ASSERT_ANY_THROW(stack.top());
+  ASSERT_EQ(secondElement, stack.peek());
 }
