@@ -7,13 +7,9 @@ Stack::Stack() {
 }
 
 Stack::~Stack() {
-  NodeStack *tmp = top;
-  while (tmp != nullptr) {
-    NodeStack *next = tmp->next;
-    delete tmp;
-    tmp = next;
-  }
-  top = nullptr;
+  while (isEmpty()) {
+    pop();
+  }  
 }
 
 double Stack::peek() {
