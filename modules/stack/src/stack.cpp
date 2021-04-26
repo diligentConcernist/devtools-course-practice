@@ -16,7 +16,7 @@ double Stack::peek() {
 
 void Stack::pop() {
   if (!isEmpty()) {
-    NodeStack *tmp = new NodeStack;
+    NodeStack *tmp;
     tmp = top;
     top = top->next;
     tmp->next = nullptr;
