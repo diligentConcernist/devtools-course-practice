@@ -7,7 +7,7 @@ Stack::Stack() {
 }
 
 Stack::~Stack() {
-  while (isEmpty()) {
+  while (!isEmpty()) {
     pop();
   }
 }
