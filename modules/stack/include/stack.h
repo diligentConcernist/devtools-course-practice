@@ -15,6 +15,7 @@ class Stack {
 
  public:
   Stack();
+  ~Stack();
   double peek();
   void pop();
   void push(const double &value);

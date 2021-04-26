@@ -6,6 +6,16 @@ Stack::Stack() {
   top = nullptr;
 }
 
+Stack::~Stack() {
+  NodeStack *tmp = top;
+  while (tmp != nullptr) {
+    NodeStack *next = tmp->next;
+    delete tmp;
+    tmp = next;
+  }
+  top = nullptr;
+}
+
 double Stack::peek() {
   if (!isEmpty()) {
     return top->data;
