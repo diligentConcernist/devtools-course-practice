@@ -9,7 +9,7 @@ Stack::Stack() {
 Stack::~Stack() {
   while (isEmpty()) {
     pop();
-  }  
+  }
 }
 
 double Stack::peek() {
