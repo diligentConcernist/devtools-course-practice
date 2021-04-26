@@ -27,8 +27,12 @@ TEST(Gruzdeva_Diana_Stack, Peek) {
 
 TEST(Gruzdeva_Diana_Stack, PeekThrow) {
   Stack stack;
+  double element = 5.0;
 
-  ASSERT_ANY_THROW(stack.pop());
+  stack.push(element);
+  stack.pop();
+
+  ASSERT_ANY_THROW(stack.peek());
 }
 
 TEST(Gruzdeva_Diana_Stack, PopNoThrow) {
