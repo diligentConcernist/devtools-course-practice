@@ -57,3 +57,9 @@ TEST(Gruzdeva_Diana_Stack, Pop) {
 
   ASSERT_EQ(secondElement, stack.peek());
 }
+
+TEST(Gruzdeva_Diana_Stack, Empty) {
+  Stack stack;
+
+  ASSERT_EQ(true, stack.isEmpty());
+}
