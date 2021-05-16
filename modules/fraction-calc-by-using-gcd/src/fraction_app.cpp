@@ -48,7 +48,6 @@ std::string Application::operator()(int argc, const char** argv) {
 }
 
 char Operation5Args::parseOperation(std::string str) {
-    //'+', '-', '*', '/', '=', '>', '<'
     if (str.size() == 1) {
         char op = str[0];
         switch (op) {
@@ -87,7 +86,6 @@ std::string Operation5Args::operator()(const char** argv) {
 
     Fraction fr;
 
-    //'+', '-', '*', '/', '=', '>', '<'
     switch (operation) {
     case '+':
         fr = f1 + f2;
