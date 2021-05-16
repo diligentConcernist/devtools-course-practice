@@ -82,9 +82,6 @@ std::string Operation5Args::operator()(const char** argv) {
     catch (std::invalid_argument) {
         return std::string("Wrong number format!");
     }
-    catch (std::out_of_range) {
-        return std::string("Wrong number format!");
-    }
 
     std::ostringstream stream;
 
@@ -108,15 +105,10 @@ std::string Operation5Args::operator()(const char** argv) {
             << "Denominator = " << fr.getDenominator();
         break;
     case '/':
-        try {
             fr = f1 / f2;
             stream << "Numerator = " << fr.getNumerator() << " "
                 << "Denominator = " << fr.getDenominator();
             break;
-        }
-        catch (std::string& str) {
-            return str;
-        }
     }
 
     return std::string(stream.str());
