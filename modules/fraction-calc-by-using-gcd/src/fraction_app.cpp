@@ -11,8 +11,8 @@
 Application::Application() : message_("") {}
 
 void Application::help(const char* appname, const char* message) {
-  message_ = 
-    std::string(message) + 
+  message_ =
+    std::string(message) +
     "This is a fraction calculator application.\n\n" +
     "Please provide arguments in the following format:\n\n" +
     "  $ " + appname + " <f1_num> <f1_den> "
