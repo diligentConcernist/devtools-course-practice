@@ -74,3 +74,12 @@ add_test(
 set_tests_properties (${prefix}_can_Divide_Fractions PROPERTIES
     PASS_REGULAR_EXPRESSION "Numerator = 1 Denominator = 1"
     LABELS "${MODULE}")
+
+add_test(
+    NAME ${prefix}_can_Add_Large_Fractions
+    COMMAND ${APPLICATION} 257 1000 326 333 +
+)
+set_tests_properties (${prefix}_can_Add_Large_Fractions PROPERTIES
+    PASS_REGULAR_EXPRESSION "Numerator = 411581 Denominator = 333000"
+    LABELS "${MODULE}")
+
